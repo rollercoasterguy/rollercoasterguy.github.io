@@ -6,6 +6,9 @@ $(document).ready(function() {
   function moonTicker() {
   	jQuery.support.cors = true;
     $.ajax({
+      url: "/"
+      crossDomain: true,
+      contentType: "application/json",
       dataType: "json",
       url: "https://api.cryptowat.ch/markets/bitstamp/btcusd/ohlc?periods=3600&after="+timeStamp,
       success: mooningFunction
