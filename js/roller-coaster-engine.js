@@ -1,16 +1,12 @@
 $(document).ready(function() {
   $( "#donation_trigger" ).click();
   
-  var timeStamp = ((Date.now() / 1000) | 0);
 
   function moonTicker() {
-  	jQuery.support.cors = true;
+    var timeStamp = ((Date.now() / 1000) | 0);
     $.ajax({
-      url: "/"
-      crossDomain: true,
-      contentType: "application/json",
       dataType: "json",
-      url: "https://api.cryptowat.ch/markets/bitstamp/btcusd/ohlc?periods=3600&after="+timeStamp,
+      url: "https://cors-anywhere.herokuapp.com/https://api.cryptowat.ch/markets/bitstamp/btcusd/ohlc?periods=3600&after="+timeStamp,
       success: mooningFunction
     });
   }
