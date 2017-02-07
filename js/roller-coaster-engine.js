@@ -6,16 +6,17 @@ $(document).ready(function() {
     var timeStamp = ((Date.now() / 1000) | 0);
     $.ajax({
       dataType: "json",
-      url: "https://cors-anywhere.herokuapp.com/https://api.cryptowat.ch/markets/bitstamp/btcusd/ohlc?periods=3600&after="+timeStamp,
+      url: "https://www.bitstamp.net/api/v2/ticker_hour/btcusd/",
       success: mooningFunction
     });
   }
 
   function mooningFunction(data) {
-  	var tickerDataArray = data['result']['3600'];
-  	var lastTickerData = tickerDataArray[tickerDataArray.length-1];
-  	var oldEarth = lastTickerData[1];
-  	var currentMoon = lastTickerData[4];
+  	//var tickerDataArray = data['result']['3600'];
+  	//var lastTickerData = tickerDataArray[tickerDataArray.length-1];
+
+  	var oldEarth = data.open;
+  	var currentMoon = data.last;
 
   	var hodlerStatus = currentMoon>oldEarth;
 
@@ -42,5 +43,5 @@ $(document).ready(function() {
   }
 
   moonTicker();
-  setInterval(moonTicker, 4 * 1000);
+  setInterval(moonTicker, 8 * 1000);
 });
