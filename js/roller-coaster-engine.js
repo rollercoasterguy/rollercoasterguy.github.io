@@ -7,7 +7,7 @@ $(document).ready(function() {
   	jQuery.support.cors = true;
     $.ajax({
       dataType: "json",
-      url: "https://cors-anywhere.herokuapp.com/https://api.cryptowat.ch/markets/bitstamp/btcusd/ohlc?periods=3600&after="+timeStamp,
+      url: "https://api.cryptowat.ch/markets/bitstamp/btcusd/ohlc?periods=3600&after="+timeStamp,
       success: mooningFunction
     });
   }
