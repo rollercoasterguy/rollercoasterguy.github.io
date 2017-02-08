@@ -1,27 +1,35 @@
 $(document).ready(function() {
   $( "#donation_trigger" ).click();
+
+  var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "SWSF'S FAULT", "BIGGER BLOCKS CENTRALIZATIOON"];
+  var hodlersBelike = ["hooodll", "hodloor", "To the mooooon ", "$10K INCOMING"];
+  var maximum = hodlersBelike.length;
+  
   
 
   function moonTicker() {
     var timeStamp = ((Date.now() / 1000) | 0);
     $.ajax({
       dataType: "json",
-      url: "https://www.bitstamp.net/api/v2/ticker_hour/btcusd/",
+      url: "https://api.bitfinex.com/v2/candles/trade:30m:tBTCUSD/last",
       success: mooningFunction
     });
   }
 
   function mooningFunction(data) {
-  	//var tickerDataArray = data['result']['3600'];
-  	//var lastTickerData = tickerDataArray[tickerDataArray.length-1];
 
-  	var oldEarth = data.open;
-  	var currentMoon = data.last;
+  	var oldEarth = data[1];
+  	var currentMoon = data[2];
 
   	var hodlerStatus = currentMoon>oldEarth;
 
-    var rollerCoasterStatus = hodlerStatus ? "To the mooooon " : "PANIC SELLING!!! ";
+    var randomDump = getRandom(maximum);
+    var randomPump = getRandom(maximum);
+
+    var rollerCoasterStatus = hodlerStatus ? hodlersBelike[randomPump] : tronaldDump[randomDump];
     $('#current-moon').html('$'+currentMoon+" USD");
+
+
     document.title = '('+Number(currentMoon).toFixed(1)+')' + " Bitcoin Roller Coaster Guy";
 
     rBitcoin_or_rBtc(hodlerStatus);
@@ -42,6 +50,11 @@ $(document).ready(function() {
     return;
   }
 
+  function getRandom(max) {
+    return Math.round(Math.random()*max);
+  }
+
+
   moonTicker();
-  setInterval(moonTicker, 8 * 1000);
+  setInterval(moonTicker, 6 * 1000);
 });
