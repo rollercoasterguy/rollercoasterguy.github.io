@@ -10,7 +10,7 @@ $(document).ready(function() {
   function moonTicker() {
     $.ajax({
       dataType: "json",
-      url: "https://api.bitfinex.com/v2/candles/trade:30m:tBTCUSD/last",
+      url: "https://api.bitfinex.com/v2/candles/trade:1h:tBTCUSD/last",
       success: mooningFunction
     });
   }
@@ -20,7 +20,7 @@ $(document).ready(function() {
   	var oldEarth = data[1];
   	currentMoon = data[2];
 
-  	var hodlerStatus = currentMoon>oldEarth;
+  	var hodlerStatus = currentMoon>=oldEarth;
 
     var randomDump = getRandom(maximum);
     var randomPump = getRandom(maximum);
@@ -54,7 +54,7 @@ $(document).ready(function() {
   }
 
   moonTicker();
-  setInterval(moonTicker, 6 * 1000);
+  setInterval(moonTicker, 10 * 1000);
 
 
   //thread txCount request
@@ -72,7 +72,7 @@ $(document).ready(function() {
   }
 
   txCountRequest();
-  setInterval(txCountRequest, 1* 60 * 1000);
+  setInterval(txCountRequest, 5 * 60 * 1000);
 
 
     //thread for fee request
@@ -90,7 +90,7 @@ $(document).ready(function() {
       $('#fastest-avg-fee').html("~$"+Number(fastestAvgFeePerTx).toFixed(3)+" USD");
     
   }
-  
+
  feeRequest();
  setInterval(feeRequest, 10 * 1000);
 
