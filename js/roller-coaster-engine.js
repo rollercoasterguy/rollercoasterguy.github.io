@@ -10,7 +10,7 @@ $(document).ready(function() {
   function moonTicker() {
     $.ajax({
       dataType: "json",
-      url: "https://api.bitfinex.com/v2/candles/trade:30m:tBTCUSD/last",
+      url: "https://api.bitfinex.com/v2/candles/trade:1h:tBTCUSD/last",
       success: mooningFunction
     });
   }
