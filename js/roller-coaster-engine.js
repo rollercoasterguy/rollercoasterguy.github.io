@@ -1,14 +1,13 @@
 $(document).ready(function() {
   $( "#donation_trigger" ).click();
 
-  var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "SWSF'S FAULT", "BIGGER BLOCKS CENTRALIZATIOON"];
-  var hodlersBelike = ["hooodll", "hodloor", "To the mooooon ", "$10K INCOMING"];
+  var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "SWSF'S FAULT", "BIGGER BLOCKS CENTRALIZATION", "Cheina. China. Jina. Shyna"];
+  var hodlersBelike = ["hooodll", "hodloor", "To the mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!"];
   var maximum = hodlersBelike.length;
   var currentMoon = null;
   
 
   function moonTicker() {
-    var timeStamp = ((Date.now() / 1000) | 0);
     $.ajax({
       dataType: "json",
       url: "https://api.bitfinex.com/v2/candles/trade:30m:tBTCUSD/last",
@@ -91,6 +90,7 @@ $(document).ready(function() {
       $('#fastest-avg-fee').html("~$"+Number(fastestAvgFeePerTx).toFixed(3)+" USD");
     
   }
+  
  feeRequest();
  setInterval(feeRequest, 10 * 1000);
 

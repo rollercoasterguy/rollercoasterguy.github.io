@@ -41,6 +41,6 @@ html, body {
 }
 
 .fixed-container {
-  min-height: 200px;
-  max-height: 300px;
+  min-height: 220px;
+  max-height: 350px;
 }
