@@ -39,11 +39,11 @@ $(document).ready(function() {
 
   function rBitcoin_or_rBtc(hodlerStatus){
     if(hodlerStatus){
-      $('#roller-coaster-guy').addClass("here-we-go");
+      $('#roller-coaster-guy').removeClass("here-we-go");
       $('.panel').removeClass("panel-danger").addClass("panel-success");
       $('.label').removeClass("label-danger").addClass("label-success");
     }else {
-      $('#roller-coaster-guy').removeClass("here-we-go");
+      $('#roller-coaster-guy').addClass("here-we-go");
       $('.panel').removeClass("panel-success").addClass("panel-danger");
       $('.label').removeClass("label-success").addClass("label-danger");
     }
