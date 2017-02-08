@@ -37,10 +37,14 @@ $(document).ready(function() {
   }
 
   function rBitcoin_or_rBtc(hodlerStatus){
-    if(!hodlerStatus){
-      $('#roller-coaster-guy').toggleClass("here-we-go");
-      $('.panel').toggleClass("panel-danger").toggleClass("panel-success");
-      $('.label').toggleClass("label-danger").toggleClass("label-success");
+    if(hodlerStatus){
+      $('#roller-coaster-guy').removeClass("here-we-go");
+      $('.panel').removeClass("panel-danger").addClass("panel-success");
+      $('.label').removeClass("label-danger").addClass("label-success");
+    }else {
+      $('#roller-coaster-guy').addClass("here-we-go");
+      $('.panel').removeClass("panel-success").addClass("panel-danger");
+      $('.label').removeClass("label-success").addClass("label-danger");
     }
   }
 
@@ -48,7 +52,6 @@ $(document).ready(function() {
   function getRandom(max) {
     return Math.round(Math.random()*max);
   }
-
 
   moonTicker();
   setInterval(moonTicker, 10 * 1000);
@@ -72,7 +75,7 @@ $(document).ready(function() {
   setInterval(txCountRequest, 30 * 1000);
 
 
-    //thread for fee request
+  //thread for fee request
   function feeRequest() {
     $.ajax({
       dataType: "json",
@@ -87,6 +90,5 @@ $(document).ready(function() {
       $('#fastest-avg-fee').html("~$"+Number(fastestAvgFeePerTx).toFixed(3)+" USD");
     
   }
-
 
 });
