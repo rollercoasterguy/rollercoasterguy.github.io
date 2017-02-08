@@ -1,6 +1,6 @@
 
 body { 
-  background: url("../images/what-if-its-a-space-rollercoaster.jpg") no-repeat center center; 
+  background: url("../images/what-if-its-a-space-rollercoaster.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -38,4 +38,9 @@ html, body {
 }
 .transparent:hover{
   background-color:rgba(255, 255, 255, 0.8);
+}
+
+.fixed-container {
+  min-height: 200px;
+  max-height: 300px;
 }

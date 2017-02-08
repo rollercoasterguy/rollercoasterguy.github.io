@@ -4,7 +4,7 @@ $(document).ready(function() {
   var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "SWSF'S FAULT", "BIGGER BLOCKS CENTRALIZATIOON"];
   var hodlersBelike = ["hooodll", "hodloor", "To the mooooon ", "$10K INCOMING"];
   var maximum = hodlersBelike.length;
-  
+  var currentMoon = null;
   
 
   function moonTicker() {
@@ -19,7 +19,7 @@ $(document).ready(function() {
   function mooningFunction(data) {
 
   	var oldEarth = data[1];
-  	var currentMoon = data[2];
+  	currentMoon = data[2];
 
   	var hodlerStatus = currentMoon>oldEarth;
 
@@ -28,7 +28,6 @@ $(document).ready(function() {
 
     var rollerCoasterStatus = hodlerStatus ? hodlersBelike[randomPump] : tronaldDump[randomDump];
     $('#current-moon').html('$'+currentMoon+" USD");
-
 
     document.title = '('+Number(currentMoon).toFixed(1)+')' + " Bitcoin Roller Coaster Guy";
 
@@ -50,11 +49,49 @@ $(document).ready(function() {
     return;
   }
 
+
   function getRandom(max) {
     return Math.round(Math.random()*max);
   }
 
-
   moonTicker();
   setInterval(moonTicker, 6 * 1000);
+
+
+  //thread txCount request
+  function txCountRequest() {
+    $.ajax({
+      dataType: "json",
+      url: "https://cors-anywhere.herokuapp.com/https://blockchain.info/q/unconfirmedcount",
+      success: mempoolAttack
+    });
+  }
+
+  function mempoolAttack(data){
+    var soMuchTxs = data;
+    $('#tx-count').html(soMuchTxs);    
+  }
+
+  txCountRequest();
+  setInterval(txCountRequest, 1* 60 * 1000);
+
+
+    //thread for fee request
+  function feeRequest() {
+    $.ajax({
+      dataType: "json",
+      url: "https://bitcoinfees.21.co/api/v1/fees/recommended",
+      success: makeFeeGreatAgain
+    });
+  }
+
+  function makeFeeGreatAgain(data){
+      var fastestAvgFee = data.fastestFee;
+      var fastestAvgFeePerTx = ((fastestAvgFee * 226)/100000000) * currentMoon; 
+      $('#fastest-avg-fee').html("~$"+Number(fastestAvgFeePerTx).toFixed(3)+" USD");
+    
+  }
+ feeRequest();
+ setInterval(feeRequest, 10 * 1000);
+
 });
