@@ -5,12 +5,12 @@ $(document).ready(function() {
   var hodlersBelike = ["hooodll", "hodloor", "To the mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!"];
   var maximum = hodlersBelike.length;
   var currentMoon = null;
-  
+  var soMuchTxs = null;
 
   function moonTicker() {
     $.ajax({
       dataType: "json",
-      url: "https://api.bitfinex.com/v2/candles/trade:1h:tBTCUSD/last",
+      url: "https://api.bitfinex.com/v2/candles/trade:30m:tBTCUSD/last",
       success: mooningFunction
     });
   }
@@ -33,25 +33,22 @@ $(document).ready(function() {
     rBitcoin_or_rBtc(hodlerStatus);
 
     $('#roller-coaster-status').html(rollerCoasterStatus);
+    feeRequest();
   }
 
   function rBitcoin_or_rBtc(hodlerStatus){
-    if(hodlerStatus){
-      $('#roller-coaster-guy').removeClass("here-we-go");
-      $('.panel').removeClass("panel-danger").addClass("panel-success");
-      $('.label').removeClass("label-danger").addClass("label-success");
-    }else {
-      $('#roller-coaster-guy').addClass("here-we-go");
-      $('.panel').removeClass("panel-success").addClass("panel-danger");
-      $('.label').removeClass("label-success").addClass("label-danger");
+    if(!hodlerStatus){
+      $('#roller-coaster-guy').toggleClass("here-we-go");
+      $('.panel').toggleClass("panel-danger").toggleClass("panel-success");
+      $('.label').toggleClass("label-danger").toggleClass("label-success");
     }
-    return;
   }
 
 
   function getRandom(max) {
     return Math.round(Math.random()*max);
   }
+
 
   moonTicker();
   setInterval(moonTicker, 10 * 1000);
@@ -61,18 +58,18 @@ $(document).ready(function() {
   function txCountRequest() {
     $.ajax({
       dataType: "json",
-      url: "https://cors-anywhere.herokuapp.com/https://blockchain.info/q/unconfirmedcount",
+      url: "https://blockchain.info/q/unconfirmedcount?cors=true",
       success: mempoolAttack
     });
   }
 
   function mempoolAttack(data){
-    var soMuchTxs = data;
+    soMuchTxs = data;
     $('#tx-count').html(soMuchTxs);    
   }
 
   txCountRequest();
-  setInterval(txCountRequest, 5 * 60 * 1000);
+  setInterval(txCountRequest, 30 * 1000);
 
 
     //thread for fee request
@@ -91,7 +88,5 @@ $(document).ready(function() {
     
   }
 
- feeRequest();
- setInterval(feeRequest, 10 * 1000);
 
 });
