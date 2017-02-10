@@ -1,9 +1,9 @@
 $(document).ready(function() {
     $("#donation_trigger").click();
 
-    var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "SWSF'S FAULT", "BIGGER BLOCKS CENTRALIZATION", "Cheina. China. Jina. Shyna", "buy da dip", "Bitcoin up to 10% off"];
-    var hodlersBelike = ["hooodl", "hodloor", "To the mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!", "PUMP", "buckle up hodlers"];
-    var meh = ["meh..", "mmm...", "meh", "mmm..", "no ban no fun", "meh", "no ban no fun"];
+    var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "SWSF'S FAULT", "BIGGER BLOCKS CENTRALIZATION", "Cheina. China. Jina. Shyna", "buy da dip", "Bitcoin up to 10% off", "Tronald DUMP!"];
+    var hodlersBelike = ["hooodl", "hodloor", "To the mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!", "PUMP", "buckle up hodlers", "can't see any altcoin from here"];
+    var meh = ["meh..", "mmm...", "meh", "mmm..", "no ban no fun", "meh", "no ban no fun", "mmm"];
     var maximum = hodlersBelike.length;
     var currentMoon = null;
     var soMuchTxs = null;
@@ -17,22 +17,21 @@ $(document).ready(function() {
     }
 
     function mooningFunction(data) {
-        var oldEarth = data[5][1];
+        var oldEarth = (data[5][1] + data[5][1]) / 2;
         currentMoon = data[0][2];
-
-        var hodlerStatus = currentMoon >= oldEarth;
 
         var angle = (Math.atan2(currentMoon - oldEarth, 15) * 180 / Math.PI);
 
         $('#current-moon').html('$' + currentMoon + " USD");
         document.title = '(' + Number(currentMoon).toFixed(1) + ')' + " Bitcoin Roller Coaster Guy";
 
-        updateStatus(hodlerStatus, angle);
+        updateStatus(angle);
+        updateLabels(angle);
 
         feeRequest();
     }
 
-    function updateStatus(hodlerStatus, angle) {
+    function updateStatus(angle) {
         var absAngle = Math.abs(angle);
         var randomNumber = getRandom(maximum);
         var rollerCoasterStatus = "";
@@ -40,16 +39,12 @@ $(document).ready(function() {
 
         if (absAngle >= angleTreshold) {
             $("#roller-coaster-guy").attr("src", "images/roller-coaster-guy.gif");
-            rotateTheGuy(90 - angle); //  +90 degrees 'cause de upwards gif
+            rotateTheGuy(90 - (angle * 1.1)); //  +90 degrees 'cause de upwards gif // *1.1 for more inclination
 
             if (angle >= 0) {
                 rollerCoasterStatus = hodlersBelike[randomNumber];
-                $('.panel').removeClass("panel-danger").addClass("panel-success");
-                $('.label').removeClass("label-danger").addClass("label-success");
             } else {
                 rollerCoasterStatus = tronaldDump[randomNumber];
-                $('.panel').removeClass("panel-success").addClass("panel-danger");
-                $('.label').removeClass("label-success").addClass("label-danger");
             }
         } else {
             rollerCoasterStatus = meh[randomNumber];
@@ -68,6 +63,16 @@ $(document).ready(function() {
             "o-transform": "rotate(" + angle + "deg)",
             "webkit-transform": "rotate(" + angle + "deg)"
         });
+    }
+
+    function updateLabels(angle) {
+        if (angle >= 0) {
+            $('.panel').removeClass("panel-danger").addClass("panel-success");
+            $('.label').removeClass("label-danger").addClass("label-success");
+        } else {
+            $('.panel').removeClass("panel-success").addClass("panel-danger");
+            $('.label').removeClass("label-success").addClass("label-danger");
+        }
     }
 
 
