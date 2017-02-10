@@ -2,7 +2,7 @@ $(document).ready(function() {
     $("#donation_trigger").click();
 
     var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "SWSF'S FAULT", "BIGGER BLOCKS CENTRALIZATION", "Cheina. China. Jina. Shyna", "buy da dip", "Bitcoin up to 10% off", "Tronald DUMP!"];
-    var hodlersBelike = ["hooodl", "hodloor", "To the mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!", "PUMP", "buckle up hodlers", "can't see any altcoin from here"];
+    var hodlersBelike = ["hooodl", "hodloor", "To the mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!", "PUMP", "buckle up hodlers", "can't see any altcoin up here"];
     var meh = ["meh..", "mmm...", "meh", "mmm..", "no ban no fun", "meh", "no ban no fun", "mmm"];
     var maximum = hodlersBelike.length;
     var currentMoon = null;
