@@ -54,7 +54,7 @@ $(document).ready(function() {
         } else {
             rollerCoasterStatus = meh[randomNumber];
             $("#roller-coaster-guy").attr("src", "images/no-fun-roller-coaster-guy.gif");
-            rotateTheGuy(angle);
+            rotateTheGuy(-angle);
         }
 
         $('#roller-coaster-status').html(rollerCoasterStatus);
