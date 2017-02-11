@@ -15,7 +15,7 @@ $(document).ready(function() {
     }
 
     function mooningFunction(data) {
-        var oldEarth = (data[5][1] + data[5][1]) / 2;
+        var oldEarth = data[5][1];
         currentMoon = data[0][2];
 
         var angle = (Math.atan2(currentMoon - oldEarth, 15) * 180 / Math.PI);
@@ -33,7 +33,7 @@ $(document).ready(function() {
         var absAngle = Math.abs(angle);
         var randomNumber = getRandom(maximum);
         var rollerCoasterStatus = "";
-        var angleTreshold = 15;
+        var angleTreshold = 10;
 
         if (absAngle >= angleTreshold) {
             $("#roller-coaster-guy").attr("src", "images/roller-coaster-guy.gif");
