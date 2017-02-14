@@ -33,7 +33,7 @@ $(document).ready(function() {
         var absAngle = Math.abs(angle);
         var randomNumber = getRandom(maximum);
         var rollerCoasterStatus = "";
-        var angleTreshold = 7.5;
+        var angleTreshold = 10;
 
         if (absAngle >= angleTreshold) {
             $("#roller-coaster-guy").attr("src", "images/roller-coaster-guy.gif");
