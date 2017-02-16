@@ -5,22 +5,28 @@ $(document).ready(function() {
     var meh = ["meh..", "mmm...", "meh", "mmm..", "no ban no fun", "meh", "no ban no fun", "mmm"];
     var maximum = hodlersBelike.length;
     var currentMoon = null;
+    var oldEarth = null;
+    var timeframe = ['15m', '30m', '1h', '3h', '6h', '12h', '1D'];
 
     function moonTicker() {
         $.ajax({
             dataType: "json",
-            url: "https://api.bitfinex.com/v2/candles/trade:5m:tBTCUSD/hist?limit=12",
+            url: "https://api.bitfinex.com/v2/candles/trade:1D:tBTCUSD/hist?limit=1",
             success: mooningFunction
         });
     }
 
     function mooningFunction(data) {
-        var oldEarth = data[11][1];
+        oldEarth = data[0][1];
         currentMoon = data[0][2];
 
-        var angle = (Math.atan2(currentMoon - oldEarth, 15) * 180 / Math.PI);
+        var change = currentMoon - oldEarth;
+        var angle = (Math.atan2(change, 15) * 180 / Math.PI);
 
         $('#current-moon').html('$' + currentMoon + " USD");
+        var signal = change >= 0 ? '+' : '-';
+        $('#change-value').html(signal + Math.abs((change)).toFixed(2));
+        $('#change-percentage').html(signal + Math.abs((((currentMoon / oldEarth) - 1) * 100)).toFixed(2) + "%");
         document.title = '(' + Number(currentMoon).toFixed(1) + ')' + " Bitcoin Roller Coaster Guy";
 
         updateStatus(angle);
@@ -33,11 +39,11 @@ $(document).ready(function() {
         var absAngle = Math.abs(angle);
         var randomNumber = getRandom(maximum);
         var rollerCoasterStatus = "";
-        var angleTreshold = 10;
+        var angleTreshold = 15;
 
         if (absAngle >= angleTreshold) {
             $("#roller-coaster-guy").attr("src", "images/roller-coaster-guy.gif");
-            rotateTheGuy(90 - (angle * 1.1)); //  +90 degrees 'cause de upwards gif // *1.1 for more inclination
+            rotateTheGuy(90 - (angle)); //  +90 degrees 'cause de upwards gif
 
             if (angle >= 0) {
                 rollerCoasterStatus = hodlersBelike[randomNumber];

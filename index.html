@@ -19,10 +19,9 @@
 
 <body>
     <div class="container">
-        <div class="page-header" style="margin-bottom:100px;">
-            <div class="text-center" style="margin-bottom:100px;">
+        <div class="page-header" style="margin-bottom:50px;">
+            <div class="text-center" style="margin-bottom:50px;">
                 <img id="roller-coaster-guy" class="image-responsive" src="images/no-fun-roller-coaster-guy.gif" style="height: 300px">
-
             </div>
             <div id="background-chart">
 
@@ -33,6 +32,7 @@
             <div class="col-sm-4 col-sm-offset-4">
                 <div class="panel label-success transparent fixed-container">
                     <h1><span id="current-moon" class="label label-success">---</span></h1>
+                    <h3><span id="change-value" class="label label-success">--</span> <span id="change-percentage" class="label label-success">--</span></h3>
                     <div class="panel-body">
                         <h2 id="roller-coaster-status"></h2>
                     </div>
@@ -88,7 +88,7 @@
                 <div class="col-sm-4">
                     <div class="col-sm" style="padding: 0 0 0 0px">
                         <h2 id='footer-header'> Exchange price </h2>
-                        <p style="font-size:13px">The prices are based on Bitfinex 1 hour timeframe.</p>
+                        <p style="font-size:13px">The prices are based on Bitfinex daily change.</p>
                     </div>
 
                     <div class="col-sm" style="padding: 0 0 0 0px">
