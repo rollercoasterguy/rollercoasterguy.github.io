@@ -11,13 +11,13 @@ $(document).ready(function() {
     function moonTicker() {
         $.ajax({
             dataType: "json",
-            url: "https://api.bitfinex.com/v2/candles/trade:1D:tBTCUSD/hist?limit=1",
+            url: "https://api.bitfinex.com/v2/candles/trade:15m:tBTCUSD/hist?limit=96",
             success: mooningFunction
         });
     }
 
     function mooningFunction(data) {
-        oldEarth = data[0][1];
+        oldEarth = data[95][1];
         currentMoon = data[0][2];
 
         var change = currentMoon - oldEarth;
