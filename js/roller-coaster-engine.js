@@ -9,13 +9,13 @@ $(document).ready(function() {
     function moonTicker() {
         $.ajax({
             dataType: "json",
-            url: "https://api.bitfinex.com/v2/candles/trade:5m:tBTCUSD/hist?limit=6",
+            url: "https://api.bitfinex.com/v2/candles/trade:5m:tBTCUSD/hist?limit=12",
             success: mooningFunction
         });
     }
 
     function mooningFunction(data) {
-        var oldEarth = data[5][1];
+        var oldEarth = data[11][1];
         currentMoon = data[0][2];
 
         var angle = (Math.atan2(currentMoon - oldEarth, 15) * 180 / Math.PI);
