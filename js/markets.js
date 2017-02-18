@@ -57,7 +57,7 @@ class Bitstamp extends Market {
             dataType: "json",
             url: this.getAdrress(),
             success: function(data) {
-                fctn(data["low"], data["last"], id);
+                fctn(data["open"], data["last"], id);
             }
         });
     }
