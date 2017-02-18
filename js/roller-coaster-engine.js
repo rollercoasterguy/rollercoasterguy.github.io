@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    // sorry for my poor js skills
 
     var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "SWSF'S FAULT", "BIGGER BLOCKS CENTRALIZATION", "Cheina. China. Jina. Shyna", "buy da dip", "Bitcoin up to 10% off", "Tronald DUMP!", "China ban. Ban china"];
     var hodlersBelike = ["hooodl", "hodloor", "To da mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!", "PUMP", "buckle up hodlers", "can't see any altcoin up here", "hey r/bitcoin, should I buy today?"];
@@ -8,17 +9,21 @@ $(document).ready(function() {
     var oldEarth = null;
     var timeframe = ['15m', '30m', '1h', '3h', '6h', '12h', '1D'];
 
+    var markets = [new Bitfinex(), new Bitstamp()]
+    var selectedMarketIndex = 0;
+    var selectedMarket = markets[selectedMarketIndex];
+
     function moonTicker() {
-        $.ajax({
-            dataType: "json",
-            url: "https://api.bitfinex.com/v2/candles/trade:15m:tBTCUSD/hist?limit=96",
-            success: mooningFunction
-        });
+        selectedMarket.fetchPrices(mooningFunction);
+        for (i = 0; i < markets.length; i++) {
+            if (i != selectedMarketIndex)
+                markets[i].fetchPrices(updateTicker);
+        }
     }
 
-    function mooningFunction(data) {
-        oldEarth = data[95][1];
-        currentMoon = data[0][2];
+    function mooningFunction(open, close, id) {
+        oldEarth = open;
+        currentMoon = close;
 
         var change = currentMoon - oldEarth;
         var angle = (Math.atan2(change, 15) * 180 / Math.PI);
@@ -31,8 +36,13 @@ $(document).ready(function() {
 
         updateStatus(angle);
         updateLabels(angle);
+        updateTicker(open, close, id);
 
         feeRequest();
+    }
+
+    function updateTicker(open, close, id) {
+        $('#ticker-' + id).html(close);
     }
 
     function updateStatus(angle) {
@@ -85,7 +95,7 @@ $(document).ready(function() {
     }
 
     moonTicker();
-    setInterval(moonTicker, 6 * 1000);
+    setInterval(moonTicker, 10 * 1000);
 
 
     //thread txCount request
@@ -119,6 +129,21 @@ $(document).ready(function() {
         var fastestAvgFee = data.fastestFee;
         var fastestAvgFeePerTx = ((fastestAvgFee * 226) / 100000000) * currentMoon;
         $('#fastest-avg-fee').html("~$" + Number(fastestAvgFeePerTx).toFixed(3) + " USD");
+    }
+
+    $(".market-ticker").click(function(selected) {
+
+        var market = $(this)[0];
+        selectedMarketIndex = market.id;
+        setMarket(selectedMarketIndex);
+        moonTicker();
+        $(".market-ticker").removeClass("active");
+        $(market).addClass("active");
+
+    });
+
+    function setMarket(marketIndex) {
+        return selectedMarket = markets[marketIndex];
     }
 
 });

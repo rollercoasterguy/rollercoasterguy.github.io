@@ -19,7 +19,7 @@
 
 <body>
     <div class="container">
-        <div class="page-header" style="margin-bottom:50px;">
+        <div class="container" style="margin-bottom:40px;margin-top:50px;">
             <div class="text-center" style="margin-bottom:50px;">
                 <img id="roller-coaster-guy" class="image-responsive" src="images/no-fun-roller-coaster-guy.gif" style="height: 300px">
             </div>
@@ -29,110 +29,138 @@
         </div>
 
         <div class="row text-center">
-            <div class="col-sm-4 col-sm-offset-4">
-                <div class="panel label-success transparent fixed-container">
+            <div class="col-sm-4 col-sm-offset-2">
+                <div class="panel label-success transparent fixed-container " style="height: 250px">
                     <h1><span id="current-moon" class="label label-success">---</span></h1>
                     <h3><span id="change-value" class="label label-success">--</span> <span id="change-percentage" class="label label-success">--</span></h3>
                     <div class="panel-body">
-                        <h3 id="roller-coaster-status"></h3>
+                        <h2 id="roller-coaster-status"></h2>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-sm-4 col-sm-offset-2">
-                <div class="panel label-success transparent fixed-container">
-                    <h1><span id="fastest-avg-fee" class="label label-success">---</span></h1>
-                    <div class="panel-body">
-                        <h3> Cheapest and fastest fee per average tx size</h3>
-                    </div>
-                    <h5><a target="_blank" href="https://bitcoinfees.21.co/"> see details here</a>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="panel label-success transparent fixed-container">
-                    <h1><span id="tx-count" class="label label-success">---</span></h1>
+                <div class="panel transparent-no-hover fixed-container" style="height: 250px">
+                    <div class="panel-body">
+                        Markets
+                        <h6 id="price-info"></h6>
+                    </div>
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr class="market-ticker active " id="0" role="button">
+                                <td class="text-left">
+                                    <small> Bitfinex</small>
+                                </td>
+                                <td class="text-right">
+                                    <small id="ticker-0"> ---</small>
+                                </td>
+                            </tr>
+                            <tr class="market-ticker" id="1" role="button">
+                                <td class="text-left">
+                                    <small> Bitstamp</small>
+                                </td>
+                                <td class="text-right">
+                                    <small id="ticker-1">---</small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center ">
+            <div class="col-sm-4 col-sm-offset-2 ">
+                <div class="panel label-success transparent fixed-container ">
+                    <h1><span id="fastest-avg-fee" class="label label-success">---</span></h1>
+                    <div class="panel-body ">
+                        <h3> Cheapest and fastest fee per average tx size</h3>
+                    </div>
+                    <h5><a target="_blank " href="https://bitcoinfees.21.co/ "> see details here</a>
+                </div>
+            </div>
+            <div class="col-sm-4 ">
+                <div class="panel label-success transparent fixed-container ">
+                    <h1><span id="tx-count" class="label label-success ">---</span></h1>
                     <div class="panel-body">
                         <h3> Unconfirmed transactions </h3>
                     </div>
-                    <h5><a target="_blank" href="https://blockchain.info/unconfirmed-transactions"> see details here</a>
+                    <h5><a target="_blank" href="https://blockchain.info/unconfirmed-transactions "> see details here</a>
                         <h5>
                 </div>
             </div>
         </div>
-        <div class="row text-center">
-            <div class="col-md-6 col-md-offset-3">
+        <div class="row text-center ">
+            <div class="col-md-6 col-md-offset-3 ">
 
             </div>
         </div>
-        <div class="push"></div>
+        <div class="push "></div>
     </div>
 
-    <nav class="navbar navbar-inverse navbar-bottom" style="padding:20px 0 0 0; margin-bottom:0px; color:#FFF">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
+    <nav class="navbar navbar-inverse navbar-bottom " style="padding:20px 0 0 0; margin-bottom:0px; color:#FFF ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-sm-4 ">
                     <h2 id='footer-header'> The Roller Coaster Guy </h2>
-                    <div class="col-sm" style="padding: 0 0 0 0px">
-                        <img src="images/bitcoin_logo.png" style="width: 150px">
+                    <div class="col-sm " style="padding: 0 0 0 0px ">
+                        <img src="images/bitcoin_logo.png " style="width: 150px ">
                     </div>
-                    <div class="col-sm" style="padding: 0 0 0 0px">
+                    <div class="col-sm " style="padding: 0 0 0 0px ">
                         <iframe data-aa='411227' src='//ad.a-ads.com/411227?size=120x60' scrolling='no' style='width:120px; height:60px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
                     </div>
-                    <div class="col-sm" style="padding: 0 0 0 0px">
+                    <div class="col-sm " style="padding: 0 0 0 0px ">
                         <h2 id='footer-header'> Acknowledgments </h2>
-                        <p style="font-size:13px"> <a target="_blank" href="http://www.brainlesstales.com/bitcoin-roller-coaster.php"> Brainless Tales </a> </p>
+                        <p style="font-size:13px "> <a target="_blank " href="http://www.brainlesstales.com/bitcoin-roller-coaster.php "> Brainless Tales </a> </p>
                     </div>
                 </div>
 
-                <div class="col-sm-4">
-                    <div class="col-sm" style="padding: 0 0 0 0px">
+                <div class="col-sm-4 ">
+                    <div class="col-sm " style="padding: 0 0 0 0px ">
                         <h2 id='footer-header'> Exchange price </h2>
-                        <p style="font-size:13px">The prices are based on Bitfinex 24h timeframe</p>
+                        <p style="font-size:13px ">The prices are based on Bitfinex 24h timeframe</p>
                     </div>
 
-                    <div class="col-sm" style="padding: 0 0 0 0px">
+                    <div class="col-sm " style="padding: 0 0 0 0px ">
                         <h2 id='footer-header'> Development </h2>
-                        <p style="font-size:13px">More features moon.. oh wait.. soon</p>
+                        <p style="font-size:13px ">More features moon.. oh wait.. soon</p>
                     </div>
 
-                    <div class="col-sm" style="padding: 0 0 0 0px">
+                    <div class="col-sm " style="padding: 0 0 0 0px ">
                         <h2 id='footer-header'> API used </h2>
-                        <a target="_blank" href="https://bitfinex.readme.io/v2/reference">
-                            <p style="font-size:13px">Bitfinex</p>
+                        <a target="_blank " href="https://bitfinex.readme.io/v2/reference ">
+                            <p style="font-size:13px ">Bitfinex</p>
                         </a>
-                        <a target="_blank" href="https://blockchain.info/q">
-                            <p style="font-size:13px">Blockchain Explorer API</p>
+                        <a target="_blank " href="https://blockchain.info/q ">
+                            <p style="font-size:13px ">Blockchain Explorer API</p>
                         </a>
-                        <a target="_blank" href="https://bitcoinfees.21.co/api">
-                            <p style="font-size:13px">Bitcoinfees.21</p>
+                        <a target="_blank " href="https://bitcoinfees.21.co/api ">
+                            <p style="font-size:13px ">Bitcoinfees.21</p>
                         </a>
                     </div>
 
-                    <div class="col-sm" style="padding: 0 0 0 0px">
+                    <div class="col-sm " style="padding: 0 0 0 0px ">
                         <h2 id='footer-header'> Github </h2>
-                        <a class="github-button" target="_blank" href="https://github.com/rollercoasterguy/rollercoasterguy.github.io" data-icon="octicon-star" data-style="mega" data-count-href="/rollercoasterguy/rollercoasterguy.github.io/stargazers" data-count-api="/repos/rollercoasterguy/rollercoasterguy.github.io#stargazers_count"
-                            data-count-aria-label="# stargazers on GitHub" aria-label="Star rollercoasterguy/rollercoasterguy.github.io on GitHub"> View on Github</a>
+                        <a class="github-button " target="_blank " href="https://github.com/rollercoasterguy/rollercoasterguy.github.io " data-icon="octicon-star " data-style="mega " data-count-href="/rollercoasterguy/rollercoasterguy.github.io/stargazers
+                                " data-count-api="/repos/rollercoasterguy/rollercoasterguy.github.io#stargazers_count " data-count-aria-label="# stargazers on GitHub " aria-label="Star rollercoasterguy/rollercoasterguy.github.io on GitHub "> View on Github</a>
                     </div>
 
 
                 </div>
 
-                <div class="col-sm-4">
-                    <div class="col-sm" style="padding: 0 0 0 0px">
+                <div class="col-sm-4 ">
+                    <div class="col-sm " style="padding: 0 0 0 0px ">
                         <h2 id='footer-header'>Donation</h2>
-                        <div style="font-size:13px" class="blockchain-btn" data-address="1mPjCjdTMwAGXuj7v2DsrSK3AerqwtF5f" data-shared="false">
-                            <div class="blockchain stage-ready">
-                                <p style="font-size:13px">You can also help the hodler coaster guy reach the moon: <b>1mPjCjdTMwAGXuj7v2DsrSK3AerqwtF5f</b></p>
-                                <p class="qr-code"> <img style="height: 100px" src="http://blockr.io/api/v1/address/Qr/1mPjCjdTMwAGXuj7v2DsrSK3AerqwtF5f" />
+                        <div style="font-size:13px " class="blockchain-btn " data-address="1mPjCjdTMwAGXuj7v2DsrSK3AerqwtF5f " data-shared="false ">
+                            <div class="blockchain stage-ready ">
+                                <p style="font-size:13px ">You can also help the hodler coaster guy reach the moon: <b>1mPjCjdTMwAGXuj7v2DsrSK3AerqwtF5f</b></p>
+                                <p class="qr-code "> <img style="height: 100px " src="http://blockr.io/api/v1/address/Qr/1mPjCjdTMwAGXuj7v2DsrSK3AerqwtF5f " />
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm" style="padding: 0 0 0 0px">
+                    <div class="col-sm " style="padding: 0 0 0 0px ">
                         <h2 id='footer-header'>Contact</h2>
-                        <p style="font-size:13px"> You can find me on reddit <a target="_blank" href="https://www.reddit.com/u/roller-coaster-guy">/u/roller-coaster-guy</a></p>
+                        <p style="font-size:13px "> You can find me on reddit <a target="_blank " href="https://www.reddit.com/u/roller-coaster-guy ">/u/roller-coaster-guy</a></p>
                     </div>
 
                 </div>
@@ -140,9 +168,10 @@
         </div>
     </nav>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="js/roller-coaster-engine.js"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js "></script>
+    <script src="js/markets.js "></script>
+    <script src="js/roller-coaster-engine.js "></script>
+    <script async defer src="https://buttons.github.io/buttons.js "></script>
     <script>
         (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
