@@ -47,3 +47,24 @@ body {
     min-height: 220px;
     max-height: 350px;
 }
+
+.pulse {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes flash {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.flash {
+    animation-name: flash;
+}

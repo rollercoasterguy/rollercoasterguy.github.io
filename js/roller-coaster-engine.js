@@ -7,45 +7,77 @@ $(document).ready(function() {
     var maximum = hodlersBelike.length;
     var currentMoon = null;
     var oldEarth = null;
-    var timeframe = ['15m', '30m', '1h', '3h', '6h', '12h', '1D'];
 
-    var markets = [new Bitfinex(), new Bitstamp()]
+    var markets = [new Bitfinex(), new Bitstamp()];
     var selectedMarketIndex = 0;
     var selectedMarket = markets[selectedMarketIndex];
 
-    function moonTicker() {
+    function fetchMooningPrices() {
         selectedMarket.fetchPrices(mooningFunction);
         for (i = 0; i < markets.length; i++) {
             if (i != selectedMarketIndex)
                 markets[i].fetchPrices(updateTicker);
         }
     }
+    //boostrap to display current mooning prices and daily change
+    fetchMooningPrices();
+    setInterval(fetchMooningPrices, 10 * 60 * 1000);
+
+
+    //web sockets running to not lose the mooning prices
+    for (i = 0; i < markets.length; i++) {
+        markets[i].runWebsocketTicker(updateTicker);
+    }
+
+    function moonTicker() {
+        mooningFunction(selectedMarket.getOpenPrice(), selectedMarket.getLatestPrice(), selectedMarketIndex);
+    }
 
     function mooningFunction(open, close, id) {
-        oldEarth = open;
-        currentMoon = close;
-
-        var change = currentMoon - oldEarth;
-        var angle = (Math.atan2(change, 15) * 180 / Math.PI);
-
-        var signal = change >= 0 ? '+' : '-';
-        $('#current-moon').html('$' + currentMoon + " USD");
-        $('#change-value').html(signal + Math.abs((change)).toFixed(2));
-        $('#change-percentage').html(signal + Math.abs((((currentMoon / oldEarth) - 1) * 100)).toFixed(2) + "%");
-        document.title = '(' + Number(currentMoon).toFixed(1) + ')' + " Bitcoin Roller Coaster Guy";
-
-        updateStatus(angle);
-        updateLabels(angle);
+        updateCurrentMoon(open, close);
+        updateStatus(open, close);
+        updateLabels(open, close);
         updateTicker(open, close, id);
+    }
 
-        feeRequest();
+    function updateCurrentMoon(open, close) {
+
+        if (currentMoon != close) {
+            oldEarth = open;
+            currentMoon = close;
+
+            var change = currentMoon - oldEarth;
+
+            $('#current-moon').html('$' + currentMoon + " USD");
+            animateMoonElem($('#current-moon'));
+
+            var signal = change >= 0 ? '+' : '-';
+            $('#change-value').html(signal + Math.abs((change)).toFixed(2));
+            $('#change-percentage').html(signal + Math.abs((((currentMoon / oldEarth) - 1) * 100)).toFixed(2) + "%");
+
+            document.title = '(' + Number(currentMoon).toFixed(1) + ')' + " Bitcoin Roller Coaster Guy";
+            feeRequest();
+        }
     }
 
     function updateTicker(open, close, id) {
-        $('#ticker-' + id).html(close);
+        var tickerElem = $('#ticker-' + id);
+        if (close != tickerElem.html()) {
+            tickerElem.html(close);
+            animateMoonElem(tickerElem);
+        }
     }
 
-    function updateStatus(angle) {
+    function animateMoonElem(mooningElem) {
+        // it must have pulse class
+        mooningElem.addClass("flash");
+        setTimeout(function() {
+            mooningElem.removeClass("flash")
+        }, 1000);
+    }
+
+    function updateStatus(open, close) {
+        var angle = (Math.atan2(close - open, 15) * 180 / Math.PI);
         var absAngle = Math.abs(angle);
         var randomNumber = getRandom(maximum);
         var rollerCoasterStatus = "";
@@ -79,8 +111,8 @@ $(document).ready(function() {
         });
     }
 
-    function updateLabels(angle) {
-        if (angle >= 0) {
+    function updateLabels(open, close) {
+        if ((open - close) < 0) {
             $('.panel').removeClass("panel-danger").addClass("panel-success");
             $('.label').removeClass("label-danger").addClass("label-success");
         } else {
@@ -94,9 +126,7 @@ $(document).ready(function() {
         return Math.round(Math.random() * max);
     }
 
-    moonTicker();
-    setInterval(moonTicker, 10 * 1000);
-
+    setInterval(moonTicker, 6 * 1000);
 
     //thread txCount request
     function txCountRequest() {
