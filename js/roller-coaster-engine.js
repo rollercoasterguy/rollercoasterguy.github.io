@@ -20,7 +20,7 @@ $(document).ready(function() {
     }
     //boostrap to display current mooning prices and daily change
     fetchMooningPrices();
-    setInterval(fetchMooningPrices, 10 * 60 * 1000);
+    setInterval(fetchMooningPrices, 5 * 60 * 1000);
 
 
     //web sockets running to not lose the mooning prices
@@ -54,7 +54,7 @@ $(document).ready(function() {
             $('#change-value').html(signal + Math.abs((change)).toFixed(2));
             $('#change-percentage').html(signal + Math.abs((((currentMoon / oldEarth) - 1) * 100)).toFixed(2) + "%");
 
-            document.title = '(' + Number(currentMoon).toFixed(2) + ')' + " Bitcoin Roller Coaster Guy";
+            document.title = '(' + currentMoon + ')' + " Bitcoin Roller Coaster Guy";
             feeRequest();
         }
     }
