@@ -1,9 +1,8 @@
 $(document).ready(function() {
-    // sorry for my poor js skills
 
     var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "SWSF'S FAULT", "BIGGER BLOCKS CENTRALIZATION", "Cheina. China. Jina. Shyna", "buy da dip", "Bitcoin up to 10% off", "Tronald DUMP!", "China ban. Ban china"];
     var hodlersBelike = ["hooodl", "hodloor", "To da mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!", "PUMP", "buckle up hodlers", "can't see any altcoin up here", "hey r/bitcoin, should I buy today?"];
-    var meh = ["meh..", "mmm...", "meh", "mmm..", "no ban no fun", "meh", "no ban no fun", "mmm", "no crisis, no pump"];
+    var meh = ["meh..", "mmm...", "meh", "mmm..", "no ban no fun", "meh", "no ban no fun", "mmm", "no etf, no pump"];
     var maximum = hodlersBelike.length;
     var currentMoon = null;
     var oldEarth = null;
@@ -55,7 +54,7 @@ $(document).ready(function() {
             $('#change-value').html(signal + Math.abs((change)).toFixed(2));
             $('#change-percentage').html(signal + Math.abs((((currentMoon / oldEarth) - 1) * 100)).toFixed(2) + "%");
 
-            document.title = '(' + Number(currentMoon).toFixed(1) + ')' + " Bitcoin Roller Coaster Guy";
+            document.title = '(' + Number(currentMoon).toFixed(2) + ')' + " Bitcoin Roller Coaster Guy";
             feeRequest();
         }
     }
@@ -81,7 +80,7 @@ $(document).ready(function() {
         var absAngle = Math.abs(angle);
         var randomNumber = getRandom(maximum);
         var rollerCoasterStatus = "";
-        var angleTreshold = 15;
+        var angleTreshold = 20;
 
         if (absAngle >= angleTreshold) {
             $("#roller-coaster-guy").attr("src", "images/roller-coaster-guy.gif");
