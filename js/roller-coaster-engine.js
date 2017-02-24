@@ -37,6 +37,7 @@ $(document).ready(function() {
         updateStatus(open, close);
         updateLabels(open, close);
         updateTicker(open, close, id);
+        updateHodlings(close);
     }
 
     function updateCurrentMoon(open, close) {
@@ -58,6 +59,14 @@ $(document).ready(function() {
             feeRequest();
         }
     }
+
+    function updateHodlings(close) {
+        var hodlingsAmount = $('#hodlings').val();
+        if (hodlingsAmount != undefined && hodlingsAmount != 0) {
+            $('#hodler-hodlings').html('$' + (close * hodlingsAmount).toFixed(2));
+        }
+    }
+
 
     function updateTicker(open, close, id) {
         var tickerElem = $('#ticker-' + id);
@@ -170,6 +179,10 @@ $(document).ready(function() {
         $(market).addClass("active");
 
     });
+
+    $("#hodlings").on("change keyup paste", function() {
+        updateHodlings(selectedMarket.getLatestPrice());
+    })
 
     function setMarket(marketIndex) {
         return selectedMarket = markets[marketIndex];
