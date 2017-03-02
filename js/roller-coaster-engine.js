@@ -91,7 +91,7 @@ $(document).ready(function() {
         var randomNumber = getRandom(maximum);
         var rollerCoasterStatus = "";
         var changeAbs = Math.abs((currentMoon / oldEarth) - 1).toFixed(3);
-        var changeTreshold = 0.01;
+        var changeTreshold = 0.008;
 
         if (changeAbs >= changeTreshold) {
             $("#roller-coaster-guy").attr("src", "images/roller-coaster-guy.gif");
