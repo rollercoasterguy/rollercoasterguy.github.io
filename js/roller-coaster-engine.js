@@ -90,7 +90,7 @@ $(document).ready(function() {
         var angle = (Math.atan2(close - open, 30) * 180 / Math.PI);
         var randomNumber = getRandom(maximum);
         var rollerCoasterStatus = "";
-        var changeAbs = Math.abs((currentMoon / oldEarth) - 1).toFixed(2);
+        var changeAbs = Math.abs((currentMoon / oldEarth) - 1).toFixed(3);
         var changeTreshold = 0.01;
 
         if (changeAbs >= changeTreshold) {
