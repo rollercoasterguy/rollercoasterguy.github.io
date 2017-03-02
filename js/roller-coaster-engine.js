@@ -7,7 +7,7 @@ $(document).ready(function() {
     var currentMoon = null;
     var oldEarth = null;
 
-    var markets = [new Bitfinex(), new Bitstamp()];
+    var markets = [new Bitstamp(), new Bitfinex()];
     var selectedMarketIndex = 0;
     var selectedMarket = markets[selectedMarketIndex];
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
     }
 
     function updateStatus(open, close) {
-        var angle = (Math.atan2(close - open, 30) * 180 / Math.PI);
+        var angle = (Math.atan2(close - open, 20) * 180 / Math.PI);
         var randomNumber = getRandom(maximum);
         var rollerCoasterStatus = "";
         var changeAbs = Math.abs((currentMoon / oldEarth) - 1).toFixed(3);
