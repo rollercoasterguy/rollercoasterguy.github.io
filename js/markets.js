@@ -45,7 +45,7 @@ class Bitfinex extends Market {
 
     constructor() {
         super();
-        this.apiAdrress = "https://api.bitfinex.com/v2/candles/trade:5m:tBTCUSD/hist?limit=288";
+        this.apiAdrress = "https://api.bitfinex.com/v2/candles/trade:1D:tBTCUSD/hist?limit=1";
         this.priceInfo = "Based on Bitfinex 24h timeframe";
         this.id = 0;
     }
@@ -83,7 +83,7 @@ class Bitfinex extends Market {
             dataType: "json",
             url: this.getAdrress(),
             success: function(data) {
-                _this.setOpenPrice(data[287][1]);
+                _this.setOpenPrice(data[0][1]);
                 _this.setLatestPrice(data[0][2]);
                 fctn(_this.getOpenPrice(), _this.getLatestPrice(), _this.id);
             }

@@ -64,6 +64,8 @@ $(document).ready(function() {
         var hodlingsAmount = $('#hodlings').val();
         if (hodlingsAmount != undefined && hodlingsAmount != 0) {
             $('#hodler-hodlings').html('$' + (close * hodlingsAmount).toFixed(2));
+        } else {
+            $('#hodler-hodlings').html('');
         }
     }
 
@@ -85,13 +87,13 @@ $(document).ready(function() {
     }
 
     function updateStatus(open, close) {
-        var angle = (Math.atan2(close - open, 15) * 180 / Math.PI);
-        var absAngle = Math.abs(angle);
+        var angle = (Math.atan2(close - open, 30) * 180 / Math.PI);
         var randomNumber = getRandom(maximum);
         var rollerCoasterStatus = "";
-        var angleTreshold = 20;
+        var changeAbs = Math.abs((currentMoon / oldEarth) - 1);
+        var changeTreshold = 0.01;
 
-        if (absAngle >= angleTreshold) {
+        if (changeAbs >= changeTreshold) {
             $("#roller-coaster-guy").attr("src", "images/roller-coaster-guy.gif");
             rotateTheGuy(90 - (angle)); //  +90 degrees 'cause de upwards gif
 
