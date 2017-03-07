@@ -97,7 +97,6 @@ class Bitfinex extends Market {
             if (msgData instanceof Array) {
                 var latestPrice = msgData[1][6];
                 if (latestPrice != undefined) {
-                    _this.setOpenPrice(msgData[0][1]);
                     _this.setLatestPrice(latestPrice);
                     updateTicker(_this.getOpenPrice(), latestPrice, _this.getId());
                 }
