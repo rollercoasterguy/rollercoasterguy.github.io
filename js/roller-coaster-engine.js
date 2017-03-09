@@ -6,6 +6,7 @@ $(document).ready(function() {
     var maximum = hodlersBelike.length;
     var currentMoon = null;
     var oldEarth = null;
+    var toggleHoldingsInput = true;
 
     var markets = [new Bitstamp(), new Bitfinex()];
     var selectedMarketIndex = 0;
@@ -61,14 +62,22 @@ $(document).ready(function() {
     }
 
     function updateHodlings(close) {
+        var fiatHodlingsAmount = $('#hodler-hodlings').val();
         var hodlingsAmount = $('#hodlings').val();
-        if (hodlingsAmount != undefined && hodlingsAmount != 0) {
-            $('#hodler-hodlings').html('$' + (close * hodlingsAmount).toFixed(2));
+        if (toggleHoldingsInput) {
+            if (hodlingsAmount != undefined && hodlingsAmount != 0) {
+                $('#hodler-hodlings').val((close * hodlingsAmount).toFixed(2));
+            } else {
+                $('#hodler-hodlings').html('');
+            }
         } else {
-            $('#hodler-hodlings').html('');
+            if (fiatHodlingsAmount != undefined && fiatHodlingsAmount != 0) {
+                $('#hodlings').val((fiatHodlingsAmount / close).toFixed(4));
+            } else {
+                $('#hodlings').html('');
+            }
         }
     }
-
 
     function updateTicker(open, close, id) {
         var tickerElem = $('#ticker-' + id);
@@ -168,7 +177,9 @@ $(document).ready(function() {
     function makeFeeGreatAgain(data) {
         var fastestAvgFee = data.fastestFee;
         var fastestAvgFeePerTx = ((fastestAvgFee * 226) / 100000000) * currentMoon;
-        $('#fastest-avg-fee').html("~$" + Number(fastestAvgFeePerTx).toFixed(3) + " USD");
+        $('#fastest-avg-fee').html("~" + fastestAvgFee + " sat/B");
+        $('#fastest-avg-fee-fiat').html("$ " + Number(fastestAvgFeePerTx).toFixed(3));
+
     }
 
     $(".market-ticker").click(function(selected) {
@@ -183,8 +194,14 @@ $(document).ready(function() {
     });
 
     $("#hodlings").on("change keyup paste", function() {
+        toggleHoldingsInput = true;
         updateHodlings(selectedMarket.getLatestPrice());
-    })
+    });
+
+    $("#hodler-hodlings").on("change keyup paste", function() {
+        toggleHoldingsInput = false;
+        updateHodlings(selectedMarket.getLatestPrice());
+    });
 
     function setMarket(marketIndex) {
         return selectedMarket = markets[marketIndex];

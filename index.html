@@ -78,21 +78,21 @@
                     </div>
                     <div>
                         <span id="" class="label pulse" style="background-color: #f7931a"><strike>Fiat</strike> equivalent</span>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input id="hodler-hodlings" type="number" step="1" class="form-control" placeholder="8888">
+                        </div>
                     </div>
-                    <div>
-                        <span id="hodler-hodlings" class="label pulse" style="background-color: #f7931a"></span>
-                    </div>
-
                 </div>
             </div>
         </div>
         <div class="row text-center">
             <div class="col-sm-4 col-sm-offset-2">
                 <div class="panel label-success transparent fixed-container">
-                    <h1><span id="fastest-avg-fee" class="label label-success">---</span></h1>
-                    <div class="panel-body">
-                        <h3> Cheapest and fastest fee per average tx size</h3>
-                    </div>
+                    <h3><span id="fastest-avg-fee" class="label label-success">---</span></h3>
+                    <h4> Cheapest and fastest fee per byte</h4>
+                    <h3><span id="fastest-avg-fee-fiat" class="label label-success">---</span></h3>
+                    <h4> Cost for a median tx size of 226 bytes</h4>
                     <h5><a target="_blank" href="https://bitcoinfees.21.co/"> see details here</a>
                 </div>
             </div>
