@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-    var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "SWSF'S FAULT", "BIGGER BLOCKS CENTRALIZATION", "Cheina. China. Jina. Shyna", "buy da dip", "Bitcoin up to 10% off", "Tronald DUMP!", "China ban. Ban china"];
-    var hodlersBelike = ["hooodl", "hodloor", "To da mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!", "PUMP", "buckle up hodlers", "can't see any altcoin up here", "hey r/bitcoin, should I buy today?"];
-    var meh = ["meh..", "mmm...", "meh", "mmm..", "no ban no fun", "meh", "no ban no fun", "mmm", "no etf, no pump"];
+    var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "Bitcoin going to 0!! LOLOLOL", "SEGWIT POISON PILL", "Cheina. China. Jina. Shyna", "buy da dip", "Bitcoin up to 10% off", "Tronald DUMP!", "China ban. Ban china"];
+    var hodlersBelike = ["hooodl", "hodloor", "To da mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!", "Bye Dimon", "buckle up hodlers", "can't see any altcoin up here", "hey r/bitcoin, should I buy today?"];
+    var meh = ["meh..", "mmm...", "meh", "C'mon... do something...", "no ban no fun", "meh", "no FUD, no fun", "mmm", "no dump, no pump"];
     var maximum = hodlersBelike.length;
     var currentMoon = null;
     var oldEarth = null;
@@ -101,6 +101,12 @@ $(document).ready(function() {
         var rollerCoasterStatus = "";
         var changeAbs = Math.abs((currentMoon / oldEarth) - 1).toFixed(3);
         var changeTreshold = 0.008;
+        
+        if(close>=10000){
+            $('body').css('background-image', 'url(images/moon.gif');
+        }else{
+            $('body').css('background-image', 'url(images/what-if-its-a-space-rollercoaster.jpg');
+        }
         
         if (changeAbs >= changeTreshold) {
             $("#roller-coaster-guy").attr("src", "images/roller-coaster-guy.gif");
