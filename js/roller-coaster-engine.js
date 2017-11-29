@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     var tronaldDump = ["PANIC SELLING!!!", "DUMPPP!", "Bitcoin going to 0!! LOLOLOL", "SEGWIT POISON PILL", "Cheina. China. Jina. Shyna", "buy da dip", "Bitcoin up to 10% off", "Tronald DUMP!", "China ban. Ban china"];
-    var hodlersBelike = ["hooodl", "hodloor", "To da mooooon", "$10K INCOMING!!!", "BITCOIN WILL UNITE US!", "Bye Dimon", "buckle up hodlers", "can't see any altcoin up here", "hey r/bitcoin, should I buy today?"];
+    var hodlersBelike = ["hooodl", "hodloor", "To da mooooon", "$100K INCOMING!!!", "BITCOIN WILL UNITE US!", "Bye Dimon", "buckle up hodlers", "can't see any altcoin up here", "hey r/bitcoin, should I buy today?"];
     var meh = ["meh..", "mmm...", "meh", "C'mon... do something...", "no ban no fun", "meh", "no FUD, no fun", "mmm", "no dump, no pump"];
     var maximum = hodlersBelike.length;
     var currentMoon = null;
