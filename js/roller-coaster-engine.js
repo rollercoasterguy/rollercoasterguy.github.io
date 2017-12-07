@@ -102,7 +102,7 @@ $(document).ready(function() {
         var changeAbs = Math.abs((currentMoon / oldEarth) - 1).toFixed(3);
         var changeTreshold = 0.008;
         
-        if(close>=10000){
+        if(close>=100000){
             $('body').css('background-image', 'url(images/moon.gif');
         }else{
             $('body').css('background-image', 'url(images/what-if-its-a-space-rollercoaster.jpg');
