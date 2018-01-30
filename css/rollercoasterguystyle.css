@@ -19,7 +19,9 @@ body {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
-
+.strike-text{
+    text-decoration:line-through
+}
 .navbar-bottom {
     height: auto;
     /* .push must be the same height as .footer */
