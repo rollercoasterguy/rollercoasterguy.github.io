@@ -104,6 +104,13 @@ $(document).ready(function() {
         
         if(close>=100000){
             $('body').css('background-image', 'url(images/moon.gif');
+        }else if(close>=9000){	
+            $('body').css('background-image', 'url(images/over9000.gif');	
+            $("#roller-coaster-guy").attr("src", "images/roller-coaster-guy.gif");	
+            rollerCoasterStatus = "IT'S OVER 9000!!!!";	
+            rotateTheGuy(0);	
+            $('#change-value').html("+9000");	
+            $('#change-percentage').html("Infinity%");
         }else{
             $('body').css('background-image', 'url(images/what-if-its-a-space-rollercoaster.jpg');
         }
