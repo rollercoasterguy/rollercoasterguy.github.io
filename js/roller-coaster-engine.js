@@ -104,7 +104,7 @@ $(document).ready(function() {
         
         if(close>=100000){
             $('body').css('background-image', 'url(images/moon.gif');
-        }else if(close>=9000){	
+        }else if(close>=9000 && close <= 9999){	
             $('body').css('background-image', 'url(images/over9000.gif');	
             $("#roller-coaster-guy").attr("src", "images/roller-coaster-guy.gif");	
             rollerCoasterStatus = "IT'S OVER 9000!!!!";	
