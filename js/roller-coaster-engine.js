@@ -182,7 +182,7 @@ $(document).ready(function() {
     function feeRequest() {
         $.ajax({
             dataType: "json",
-            url: "https://bitcoinfees.21.co/api/v1/fees/recommended",
+            url: "https://bitcoinfees.earn.com/api/v1/fees/recommended",
             success: makeFeeGreatAgain
         });
     }
@@ -191,7 +191,7 @@ $(document).ready(function() {
         var fastestAvgFee = data.fastestFee;
         var fastestAvgFeePerTx = ((fastestAvgFee * 226) / 100000000) * currentMoon;
         $('#fastest-avg-fee').html("~" + fastestAvgFee + " sat/B");
-        $('#fastest-avg-fee-fiat').html("$ " + Number(fastestAvgFeePerTx).toFixed(3));
+        $('#fastest-avg-fee-fiat').html("$ " + Number(fastestAvgFeePerTx).toFixed(2));
 
     }
 
