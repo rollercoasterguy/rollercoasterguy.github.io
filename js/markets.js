@@ -52,15 +52,30 @@ class Bitstamp extends Market {
 
     runWebsocketTicker(updateTicker) {
 
-        var pusher = new Pusher('de504dc5763aeef9ff52'),
-            tradesChannel = pusher.subscribe('live_trades');
-
+        const w = new WebSocket('wss://ws.bitstamp.net');
         var _this = this;
-        tradesChannel.bind('trade', function(data) {
-            _this.setLatestPrice(data.price);
-            updateTicker(_this.getOpenPrice(), data.price, _this.getId());
+        w.onmessage = function(event) {
+            var msgData = JSON.parse(event.data);
+            if (msgData.channel === "live_trades_btcusd") {
+                var latestPrice = msgData.data.price;
+                if (latestPrice != undefined) {
+                    latestPrice = latestPrice.toFixed(2);
+                    _this.setLatestPrice(latestPrice);
+                    updateTicker(_this.getOpenPrice(), latestPrice, _this.getId());
+                }
+            }
+        };
 
-        });
+        let msg = JSON.stringify({
+            event: 'bts:subscribe',
+            data: {
+                channel: "live_trades_btcusd"
+            }
+        })
+
+        w.onopen = function() {
+            w.send(msg);
+        };
 
     }
 
@@ -97,6 +112,7 @@ class Bitfinex extends Market {
             if (msgData instanceof Array) {
                 var latestPrice = msgData[1][6];
                 if (latestPrice != undefined) {
+                    latestPrice = latestPrice.toFixed(2);
                     _this.setLatestPrice(latestPrice);
                     updateTicker(_this.getOpenPrice(), latestPrice, _this.getId());
                 }
